@@ -9,8 +9,8 @@ const statusCodes = require("http-status-codes");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.***REMOVED***,
-      clientSecret: process.env.***REMOVED***,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: `${process.env.API_URL}/auth/google/callback`,
       passReqToCallback: true,
     },
