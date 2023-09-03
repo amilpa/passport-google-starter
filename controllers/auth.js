@@ -28,11 +28,25 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-const logoutUser = async (req, res) => {
+const getUser = (req, res) => {
+  if (req.user) {
+    const user = {
+      id: req.user.id,
+      name: req.user.displayName,
+      email: req.user.email,
+      imgURL: req.user.picture,
+    };
+    res.json({ user });
+  } else {
+    res.status(401).json({ user: null });
+  }
+};
+
+const logoutUser = (req, res) => {
   req.logout(() => {
     req.session.destroy();
     res.redirect(`${process.env.CORS_ORIGIN}`);
   });
 };
 
-module.exports = { passport, logoutUser };
+module.exports = { passport, getUser, logoutUser };

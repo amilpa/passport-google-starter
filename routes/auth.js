@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { passport } = require("../controllers/auth");
 
-const { logoutUser } = require("../controllers/auth");
+const { getUser, logoutUser } = require("../controllers/auth");
 
 router.get(
   "/google",
@@ -16,6 +16,8 @@ router.get(
     failureRedirect: `${process.env.CORS_ORIGIN}`,
   })
 );
+
+router.get("/user", getUser);
 
 router.get("/logout", logoutUser);
 
