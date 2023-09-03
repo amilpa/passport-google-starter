@@ -15,6 +15,7 @@ passport.use(
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
+      // callback for adding to db
       return done(null, profile);
     }
   )
